@@ -1,6 +1,6 @@
 # leaflet-challenge
 
-### Note: Part 2 Omitted as it is optional. There is 2 logic files but the logic2 is the final version that takes on the more traditional approach. The logic.js file introduces issues when creating a legend. 
+### Note: Part 2 Omitted as it is optional. There is 2 logic files but the logic2 is the final version that takes on the more traditional approach. The logic.js file introduces issues when creating a legend.  
 
 ## Background
 The United States Geological Survey, or USGS for short, is responsible for providing scientific data about natural hazards, the health of our ecosystems and environment, and the impacts of climate and land-use change. Their scientists develop new methods and tools to supply timely, relevant, and useful information about the Earth and its processes.

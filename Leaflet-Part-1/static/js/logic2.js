@@ -1,18 +1,21 @@
 let myLeaflet = L;
 
+// Set url for the JSON
+
 const url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson'
 
+// Create map
 const map = myLeaflet.map("map", {
     center: [0, 90],
     zoom: 3
 });
 
-
+// Add tilelayer to the map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-
+// Retrieve data from the JSON url and create markers for each datapoint
 d3.json(url).then(function(data) {
     function designMarker(feature) {
         return {
@@ -24,6 +27,7 @@ d3.json(url).then(function(data) {
         };
     }
     
+    // Add colors to the markers based on depth of the earthquake. Color palette used is a tangy yellow that gets darker according to depth. 
     function colorMarker(depth) {
     return depth > 90   ? '#997a00' :
            depth > 70   ? '#cca300' :
@@ -33,7 +37,7 @@ d3.json(url).then(function(data) {
                           '#ffe680';
     }
     
-
+    // Adjust size of the markers based on the magnitiude
     function markerRadius(mag) {
                 if (mag === 0) {
                     return 1;
@@ -41,6 +45,8 @@ d3.json(url).then(function(data) {
         
                 return mag * 5;
             }
+
+    // Obtain data from the JSON and incorporate it with markers        
     L.geoJson(data, {
 
         pointToLayer: function (feature, latlng) {
@@ -58,7 +64,7 @@ d3.json(url).then(function(data) {
         }
 }).addTo(map);
 
-
+// Add a legend that indicates the correlations between color and the respestive depths. 
 const legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function(map) {
